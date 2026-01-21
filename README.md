@@ -1,9 +1,9 @@
 
 
-#Ansible User Management Playbook
-This repository contains an Ansible playbook used to create and manage Linux users 
-across multiple servers. The playbook is designed for RHEL-based systems 
-(CentOS Stream, Rocky Linux, Alma) 
+## This repository documents the installation and initial configuration of an
+Ansible control node on a RHEL-based system. It includes installing required
+packages, verifying connectivity, configuring SSH, and creating an Ansible
+inventory.
 
 ---
 ## What the playbook does
@@ -26,3 +26,53 @@ Repository Structure
 |-useradd.yml
 |-inventory.ini.example
 |-README.md
+
+## Install
+Anislbe-Core -y
+Epel-release
+
+##Connectivity
+ansible all -m ping
+
+## SSH Configuration file
+/etc/ssh/sshd_config
+PermitRootLogin yes
+
+## add SSH service to firewall
+firewall-cmd --add-service=ssh --perm
+
+## Confirm SSH daemon is acitve and enabled
+systemctl status sshd
+systemctl enable --now sshd
+systemctl restart sshd
+systemctl status sshd
+
+## ansible-inventory
+vim /etc/ansible/hosts
+[webservers]
+servera 
+serverb
+
+## map ip addresses to hostnames
+vim /etc/hosts
+192.168.12.x servera
+192.168.12.x serverb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
