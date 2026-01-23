@@ -5,12 +5,6 @@ Ansible control node on a RHEL-based system. It includes installing required
 packages, verifying connectivity, configuring SSH, and creating an Ansible
 inventory.
 
----
-## What the playbook does
-- Creates a linux user
-- Ensures the user is present on target hosts
-- Sets the user's shell and home directory
-- Can be extended to manage groups, sudo access, and SSH KEYS
 
 ---
 ## Requirements
