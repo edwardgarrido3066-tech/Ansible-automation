@@ -15,19 +15,22 @@ inventory.
 - Target systems running RHEL-based distribution
 
 ---
-Repository Structure
+## Repository Structure
 ---text
 .
-|-useradd.yml
-|-inventory.ini.example
+Ansible_automation
+
+|-ansible.cfg
+|-inventory.example
+|-playbooks
+   |-User_and_SSH_SEtup.yml
 |-README.md
 
 ## Install
 Anislbe-Core -y
 Epel-release
 
-##Connectivity
-ansible all -m ping
+
 
 ## SSH Configuration file
 /etc/ssh/sshd_config
@@ -53,8 +56,18 @@ vim /etc/hosts
 192.168.12.x servera
 192.168.12.x serverb
 
+ssh-keygen from control node, to generate a public key
+ssh-copy-id servera type yes and tupe enter for passphrase and enter again 
+ssh-copy-id serverb type yes and tupe enter for passphrase and enter again 
 
+ssh servera to make sure it works without the need for a password
+ssh serverb to make sure it works without the need for a password
 
+## Check Connectivity 
+Verify with Ansible ping
+ansible webservers -m ping
+expected output pong
+ping : pong
 
 
 
