@@ -1,6 +1,7 @@
 
 
-## This repository documents the installation and initial configuration of an
+##  Ansible_automation 
+This repository documents the installation and initial configuration of an
 Ansible control node on a RHEL-based system. It includes installing required
 packages, verifying connectivity, configuring SSH, and creating an Ansible
 inventory.
