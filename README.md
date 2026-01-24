@@ -47,9 +47,11 @@ systemctl status sshd
 
 ## ansible-inventory
 vim /etc/ansible/hosts
+
 [webservers]
 servera 
 serverb
+“Hostnames are examples and should be replaced with real target systems.”
 
 ## map ip addresses to hostnames
 vim /etc/hosts
