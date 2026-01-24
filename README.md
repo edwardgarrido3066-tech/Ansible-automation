@@ -52,6 +52,12 @@ servera
 serverb
 “Hostnames are examples and should be replaced with real target systems.”
 
+## ansible-inventory
+
+Edit the Ansible inventory file:
+```bash
+vim /etc/ansible/hosts
+
 ## map ip addresses to hostnames
 vim /etc/hosts
 192.168.12.x servera
