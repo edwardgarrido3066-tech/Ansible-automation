@@ -72,7 +72,7 @@ ping : pong
 
 # Playbooks
 
-### useradd.yml
+### -useradd.yml
 This playbook ensures a Linux user account is present on all hosts in the `webservers` inventory group.  
 It creates the user and ensures a home directory exists.
 
