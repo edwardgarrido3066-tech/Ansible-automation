@@ -47,7 +47,6 @@ systemctl status sshd
 
 ## ansible-inventory
 vim /etc/ansible/hosts
-
 [webservers]
 servera 
 serverb
