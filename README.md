@@ -45,22 +45,7 @@ systemctl enable --now sshd
 systemctl restart sshd
 systemctl status sshd
 
-## ansible-inventory
-vim /etc/ansible/hosts
-[webservers]
-servera 
-serverb
-“Hostnames are examples and should be replaced with real target systems.”
 
-## ansible-inventory
-
-Edit the Ansible inventory file:
-
-vim /etc/ansible/hosts
-ini
-[webservers]
-servera
-serverb
 
 
 ## ansible-inventory
