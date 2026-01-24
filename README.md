@@ -30,8 +30,6 @@ Ansible_automation
 Anislbe-Core -y
 Epel-release
 
-
-
 ## SSH Configuration file
 /etc/ssh/sshd_config
 PermitRootLogin yes
@@ -47,11 +45,10 @@ systemctl status sshd
 
 
 
-
-## ansible-inventory
-
-Edit the Ansible inventory file:
 ```bash
+## ansible-inventory
+Edit the Ansible inventory file:
+
 vim /etc/ansible/hosts
 [webservers]
 servera
