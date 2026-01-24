@@ -55,8 +55,36 @@ serverb
 ## ansible-inventory
 
 Edit the Ansible inventory file:
+
+vim /etc/ansible/hosts
+ini
+[webservers]
+servera
+serverb
+
+
+## ansible-inventory
+
+Edit the Ansible inventory file:
 ```bash
 vim /etc/ansible/hosts
+[webservers]
+servera
+serverb
+
+# Hostnames are examples and should be replaced with real target systems.
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## map ip addresses to hostnames
 vim /etc/hosts
