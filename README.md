@@ -63,8 +63,7 @@ serverb
 vim /etc/hosts
 192.168.12.x servera
 192.168.12.x serverb
----
-```md
+
 ## SSH Key Authentication
 
 ssh-keygen from control node, to generate a public key
