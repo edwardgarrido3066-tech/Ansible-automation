@@ -70,7 +70,17 @@ expected output pong
 ping : pong
 
 
+# Playbooks
 
+### useradd.yml
+This playbook ensures a Linux user account is present on all hosts in the `webservers` inventory group.  
+It creates the user and ensures a home directory exists.
+
+**Location:** `playbooks/useradd.yml`
+
+**Run example:**
+```bash
+ansible-playbook -i inventory useradd.yml
 
 
 
