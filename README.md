@@ -28,27 +28,31 @@ Ansible_automation
    |-useradd.yml
 |-README.md
 
+## check to see if ssh in already installed
+rpm -q openssh-server
+## if not installed, install it
+sudo dnf install -y openssh-server
 ## Install
-Anislbe-Core -y
-Epel-release
+sudo install anislbe-Core -y
+sudo install Epel-release
 
 ## SSH Configuration file
-/etc/ssh/sshd_config
-PermitRootLogin yes
+sudo vim /etc/ssh/sshd_config
+PermitRootLogin yes (set it to yes)
 
 ## add SSH service to firewall
-firewall-cmd --add-service=ssh --perm
+sudo firewall-cmd --add-service=ssh --perm
 
 ## Confirm SSH daemon is acitve and enabled
-systemctl status sshd
-systemctl enable --now sshd
-systemctl restart sshd
-systemctl status sshd
+sudo systemctl status sshd
+sudo systemctl enable --now sshd
+sudo systemctl restart sshd
+sudo systemctl status sshd
 
 ## ansible-inventory
 Edit the Ansible inventory file:
 
-vim /etc/ansible/hosts
+sudo vim /etc/ansible/hosts
 [webservers]
 servera
 serverb
@@ -56,22 +60,22 @@ serverb
 # Hostnames are examples and should be replaced with real target systems.
 
 ## map ip addresses to hostnames
-vim /etc/hosts
+sudo vim /etc/hosts
 192.168.12.x servera
 192.168.12.x serverb
 
 ## SSH Key Authentication
 
-ssh-keygen from control node, to generate a public key
-ssh-copy-id servera type yes and tupe enter for passphrase and enter again 
-ssh-copy-id serverb type yes and tupe enter for passphrase and enter again 
+sudo ssh-keygen from control node, to generate a public key
+sudo ssh-copy-id servera type yes and tupe enter for passphrase and enter again 
+sudo ssh-copy-id serverb type yes and tupe enter for passphrase and enter again 
 
-ssh servera to make sure it works without the need for a password
-ssh serverb to make sure it works without the need for a password
+sudo ssh servera (to make sure it works without the need for a password)
+sudo ssh serverb (to make sure it works without the need for a password)
 
 ## Check Connectivity 
 Verify with Ansible ping
-ansible webservers -m ping
+sudo ansible webservers -m ping
 expected output pong
 ping : pong
 
