@@ -15,6 +15,7 @@ inventory.
 - Target systems running RHEL-based distribution
 
 ---
+```bash
 ## Repository Structure
 ---text
 .
@@ -24,6 +25,7 @@ Ansible_automation
 |-inventory.example
 |-playbooks
    |-User_and_SSH_SEtup.yml
+   |-useradd.yml
 |-README.md
 
 ## Install
@@ -43,9 +45,6 @@ systemctl enable --now sshd
 systemctl restart sshd
 systemctl status sshd
 
-
-
-```bash
 ## ansible-inventory
 Edit the Ansible inventory file:
 
