@@ -36,18 +36,21 @@ sudo dnf install -y openssh-server
 sudo install anislbe-Core -y
 sudo install Epel-release
 
-## SSH Configuration file
-sudo vim /etc/ssh/sshd_config
-PermitRootLogin yes (set it to yes)
-
 ## add SSH service to firewall
-sudo firewall-cmd --add-service=ssh --perm
+sudo firewall-cmd --list-all (check to see if ssh in firewall) if not than add the ssh service
+sudo firewall-cmd --add-service=ssh --perm (adds ssh service to firewall)
+sudo firewall-cmd --list-all (confirm it has been added)
+sudo firewall-cmd --reload
 
-## Confirm SSH daemon is acitve and enabled
+## Enable and start SSH
 sudo systemctl status sshd
 sudo systemctl enable --now sshd
 sudo systemctl restart sshd
-sudo systemctl status sshd
+sudo systemctl status sshd (verify ssh is running)
+
+## SSH Configuration file
+sudo vim /etc/ssh/sshd_config
+PermitRootLogin yes (set it to yes)
 
 ## ansible-inventory
 Edit the Ansible inventory file:
