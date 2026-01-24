@@ -59,22 +59,13 @@ serverb
 
 # Hostnames are examples and should be replaced with real target systems.
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## map ip addresses to hostnames
 vim /etc/hosts
 192.168.12.x servera
 192.168.12.x serverb
+---
+```md
+## SSH Key Authentication
 
 ssh-keygen from control node, to generate a public key
 ssh-copy-id servera type yes and tupe enter for passphrase and enter again 
