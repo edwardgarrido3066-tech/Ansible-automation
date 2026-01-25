@@ -21,31 +21,38 @@ Network connectivity between control node and managed hosts
 ---
 ```bash
 
-## Install Ansible
-sudo install anislbe-Core -y
-sudo install Epel-release
+.
 
-## Verify installation:
+Install Ansible (Control Node)
+Install EPEL and Ansible Core:
+
+sudo dnf install -y epel-release
+sudo dnf install -y ansible-core
+
+
+Verify installation:
 ansible --version
 
-Map IP Addresses to Hostnames 
-On the control node:
+Map IP Addresses to Hostnames (Control Node)
+
+Edit the hosts file:
+
 sudo vim /etc/hosts
+
+
 Example:
+
 192.168.12.x servera
 192.168.12.x serverb
 
-## check connectivity
-on the control node:
-ping -c 4 servera 
+Verify Network Connectivity
+
+From the control node:
+
+ping -c 4 servera
 ping -c 4 serverb
 
-
-## Repository Structure
----text
-.
-Ansible_automation
-
+Repository Structure
 Ansible_automation/
 ├── ansible.cfg
 ├── inventory.example
@@ -54,71 +61,105 @@ Ansible_automation/
 │   └── useradd.yml
 └── README.md
 
-## SSH Installation and Configuration (Managed Hosts)
+SSH Installation and Configuration (Managed Hosts)
 Check if SSH is installed
 rpm -q openssh-server
+
 Install SSH if not present
 sudo dnf install -y openssh-server
 
-## add SSH service to firewall
-sudo firewall-cmd --list-all (check to see if ssh in firewall) if not than add the ssh service
-sudo firewall-cmd --add-service=ssh --perm (adds ssh service to firewall)
-sudo firewall-cmd --list-all (confirm it has been added)
+Configure Firewall for SSH
+
+Check current firewall settings:
+
+sudo firewall-cmd --list-all
+
+
+Add SSH service if not present:
+
+sudo firewall-cmd --add-service=ssh --permanent
 sudo firewall-cmd --reload
 
-## Enable and start SSH
-sudo systemctl status sshd
+
+Verify SSH is allowed:
+
+sudo firewall-cmd --list-all
+
+Enable and Start SSH
 sudo systemctl enable --now sshd
-sudo systemctl restart sshd
-sudo systemctl status sshd (verify ssh is running)
+sudo systemctl status sshd
 
-## SSH Configuration file
+SSH Configuration
+
+Edit the SSH configuration file:
+
 sudo vim /etc/ssh/sshd_config
-PermitRootLogin yes (set it to yes)
-(allowing roog login not recommended in production environments)
 
-## ansible-inventory
-Edit the Ansible inventory file:
+
+Example setting:
+
+PermitRootLogin yes
+
+
+⚠️ Allowing root login is not recommended in production environments.
+
+Restart SSH to apply changes:
+
+sudo systemctl restart sshd
+
+Ansible Inventory Configuration
+
+Edit the inventory file:
 
 sudo vim /etc/ansible/hosts
+
+
+Example:
+
 [webservers]
 servera
 serverb
-(Hostnames are examples and should be replaced with real target systems)
-
-## map ip addresses to hostnames
-sudo vim /etc/hosts
-192.168.12.x servera
-192.168.12.x serverb
-
-## SSH Key Authentication
-
-sudo ssh-keygen from control node, to generate a public key
-sudo ssh-copy-id servera type yes and tupe enter for passphrase and enter again 
-sudo ssh-copy-id serverb type yes and tupe enter for passphrase and enter again 
-
-sudo ssh servera (to make sure it works without the need for a password)
-sudo ssh serverb (to make sure it works without the need for a password)
-
-## Check Connectivity 
-Verify with Ansible ping
-sudo ansible webservers -m ping
-expected output pong
-ping : pong
 
 
-# Playbooks
+Hostnames are examples and should be replaced with real target systems.
 
-###  - useradd.yml
-This playbook ensures a Linux user account is present on all hosts in the `webservers` inventory group.  
+SSH Key Authentication
+Generate SSH key on the control node
+ssh-keygen
+
+Copy public key to managed hosts
+ssh-copy-id servera
+ssh-copy-id serverb
+
+Verify passwordless SSH access
+ssh servera
+ssh serverb
+
+Verify Ansible Connectivity
+
+Test Ansible connectivity:
+
+ansible webservers -m ping
+
+
+Expected output:
+
+ping: pong
+
+Playbooks
+useradd.yml
+
+This playbook ensures a Linux user account exists on all hosts in the webservers inventory group.
 It creates the user and ensures a home directory exists.
 
-**Location:** 
+Location:
+
 playbooks/useradd.yml
 
-**Run example:**
-ansible-playbook -i inventory useradd.yml
 
+Run example:
+
+ansible-playbook -i inventory.example playbooks/useradd.yml
 
 
 
