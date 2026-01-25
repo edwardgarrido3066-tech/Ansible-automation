@@ -13,28 +13,52 @@ inventory.
 - SSH access to target hosts
 - A control node running Linux
 - Target systems running RHEL-based distribution
-
+  
+## Prerequisites
+CentOS / RHEL / Rocky / Alma Linux
+sudo privileges on all systems
+Network connectivity between control node and managed hosts
 ---
 ```bash
+
+## Install Ansible
+sudo install anislbe-Core -y
+sudo install Epel-release
+
+## Verify installation:
+ansible --version
+
+Map IP Addresses to Hostnames 
+On the control node:
+sudo vim /etc/hosts
+Example:
+192.168.12.x servera
+192.168.12.x serverb
+
+## check connectivity
+on the control node:
+ping -c 4 servera 
+ping -c 4 serverb
+
+
 ## Repository Structure
 ---text
 .
 Ansible_automation
 
-|-ansible.cfg
-|-inventory.example
-|-playbooks
-   |-User_and_SSH_SEtup.yml
-   |-useradd.yml
-|-README.md
+Ansible_automation/
+├── ansible.cfg
+├── inventory.example
+├── playbooks/
+│   ├── User_and_SSH_Setup.yml
+│   └── useradd.yml
+└── README.md
 
-## check to see if ssh in already installed
+## SSH Installation and Configuration (Managed Hosts)
+Check if SSH is installed
 rpm -q openssh-server
-## if not installed, install it
+Install SSH if not present
 sudo dnf install -y openssh-server
-## Install
-sudo install anislbe-Core -y
-sudo install Epel-release
 
 ## add SSH service to firewall
 sudo firewall-cmd --list-all (check to see if ssh in firewall) if not than add the ssh service
@@ -51,6 +75,7 @@ sudo systemctl status sshd (verify ssh is running)
 ## SSH Configuration file
 sudo vim /etc/ssh/sshd_config
 PermitRootLogin yes (set it to yes)
+(allowing roog login not recommended in production environments)
 
 ## ansible-inventory
 Edit the Ansible inventory file:
@@ -59,8 +84,7 @@ sudo vim /etc/ansible/hosts
 [webservers]
 servera
 serverb
-
-# Hostnames are examples and should be replaced with real target systems.
+(Hostnames are examples and should be replaced with real target systems)
 
 ## map ip addresses to hostnames
 sudo vim /etc/hosts
