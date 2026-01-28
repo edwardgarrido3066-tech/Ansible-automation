@@ -1,0 +1,8 @@
+
+
+inventory
+* .retry
+* .log
+* .pem
+id_rsa*
+.vault_pass
