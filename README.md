@@ -137,12 +137,16 @@ Location:
 /playbooks/useradd.yml
 Run example:
 
-ansible-playbook -i inventory.example playbooks/useradd.yml
+ansible-playbook useradd.yml -y -K
 
 ### **User_and_SSH.yml**
 This playbook automates Linux user creation and secure SSH access across managed hosts.
 It ensures the user account exists, configures the .ssh directory with proper permissions,
 deploys authorized SSH keys, and enforces secure SSH settings for consistent and repeatable access management.
+
+/playbooks/User_and_SSH.yml
+run example:
+ansible-playbook User_and_SSH.yml -y -K
 
 
 
