@@ -49,7 +49,7 @@ ping -c 4 serverb
 
 ## Repository Structure
 
-Ansible_automation/
+root/Ansible_automation/
 ├── ansible.cfg
 ├── inventory.example
 ├── playbooks/
@@ -127,7 +127,8 @@ Expected output:
 ping: pong
 
 ## Playbooks
-useradd.yml
+
+##**useradd.yml**
 
 This playbook ensures a Linux user account exists on all hosts in the webservers inventory group.
 It creates the user and ensures a home directory exists.
@@ -137,6 +138,7 @@ Location:
 Run example:
 
 ansible-playbook -i inventory.example playbooks/useradd.yml
+
 
 
 
