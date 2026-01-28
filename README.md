@@ -126,9 +126,9 @@ Expected output:
 
 ping: pong
 
-## **Playbooks**
+### **Playbooks**
 
-## **useradd.yml**
+### **useradd.yml**
 
 This playbook ensures a Linux user account exists on all hosts in the webservers inventory group.
 It creates the user and ensures a home directory exists.
@@ -139,7 +139,7 @@ Run example:
 
 ansible-playbook -i inventory.example playbooks/useradd.yml
 
-## **User_and_SSH.yml**
+### **User_and_SSH.yml**
 This playbook automates Linux user creation and secure SSH access across managed hosts. It ensures the user account exists, configures the .ssh directory with proper permissions, deploys authorized SSH keys, and enforces secure SSH settings for consistent and repeatable access management.
 
 
