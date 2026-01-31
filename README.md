@@ -155,8 +155,14 @@ This Ansible playbook establishes a baseline Apache web server configuration on 
 
 /playbooks/apache_web_baseline.yml
 run example:
-ansible-playbook apache_web_baseline.yml
+ansible-playbook apache_web_baseline.yml -b -K
 
+# **admin_user_ssh_key.yml**
+This Ansible playbook creates a privileged administrative user on managed hosts and configures secure, key-based SSH access. It ensures the user exists, is added to the appropriate administrative group, creates the required .ssh directory with correct permissions, and deploys an authorized public SSH key. The playbook provides a simple, repeatable method for establishing secure administrative access during server provisioning and onboarding.
+
+/playbooks/admin_user_ssh_key.yml
+run example:
+ansible-playbook admin_user_ssh_key.yml -b -K
 
 
 
