@@ -129,7 +129,7 @@ ping: pong
 
 ## **Playbooks**
 
-# **useradd.yml**
+## **useradd.yml**
 
 
 This playbook ensures a Linux user account exists on all hosts in the webservers inventory group.
