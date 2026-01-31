@@ -126,7 +126,7 @@ Expected output:
 
 ping: pong
 
-# **Playbooks**
+
 ## **Playbooks**
 
 # **useradd.yml**
