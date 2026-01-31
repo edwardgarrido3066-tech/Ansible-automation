@@ -1,0 +1,32 @@
+---
+- name: Create admin user and install SSH key
+  hosts: webservers
+  become: true
+
+  vars:
+    admin_user: opsadmin
+    admin_pubkey_path: "files/opsadmin_id_rsa.pub.example"   # file next to the playbook in playbooks/files/
+
+  tasks:
+    - name: Ensure admin user exists and is in wheel
+      ansible.builtin.user:
+        name: "{{ admin_user }}"
+        groups: wheel
+        append: true
+        create_home: true
+        shell: /bin/bash
+        state: present
+
+    - name: Ensure .ssh directory exists
+      ansible.builtin.file:
+        path: "/home/{{ admin_user }}/.ssh"
+        state: directory
+        owner: "{{ admin_user }}"
+        group: "{{ admin_user }}"
+        mode: "0700"
+
+    - name: Install authorized key for admin user
+      ansible.builtin.authorized_key:
+        user: "{{ admin_user }}"
+        key: "{{ lookup('file', admin_pubkey_path) }}"
+        state: present
